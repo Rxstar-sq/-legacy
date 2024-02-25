@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 被2013 sp1 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Randomevents>
+  <EventSprites>
+    <!--以后再说吧-->
+  </EventSprites>
+  <EventPrefabs>
+    <ScriptedEvent identifier="Legende2" commonness="70">
+      <CheckDataAction identifier="Legende2_complete" condition="eq true">
+        <Success>
+          <!--Don't repeat event-->
+        </Success>
+        <Failure>
+          <TagAction criteria="player" tag="player" />
+          <SpawnAction npcsetidentifier="DHnpc" npcidentifier="Legende" targettag="Legende" spawnlocation="Outpost" targetmoduletags="airlock" />
+          <TriggerAction target1tag="Legende" target2tag="player" applytotarget2="triggerer_player" waitforinteraction="true" />
+          <NPCFollowAction npctag="Legende" targettag="triggerer_player" follow="true" />
+          <ConversationAction targettag="triggerer_player" text="联盟最近听说了你优异的战绩,决定给你一个机会" eventsprite="crowd">
+            <Option text="什么机会">
+              <ConversationAction targettag="triggerer_player" text="你愿意舍弃普通人的身份,放弃普通人的生活,用机械替换大部分器官,成为新的黎明守护者,为人类而战吗?">
+                <SpawnAction itemidentifier="endocrinebooster" targetinventory="triggerer_player" />
+                <Option text="当然">
+                  <ConversationAction targettag="triggerer_player" text="很好,那就一起为了人类而战吧" />
+                  <NPCFollowAction npctag="Legende" targettag="triggerer_player" follow="false" />
+                  <SpawnAction itemidentifier="spacepowerarmourEX3" targetinventory="triggerer_player" equip="true" />
+                  <CheckItemAction targettag="triggerer_player" itemidentifiers="spacepowerarmourEX3" amount="1">
+                    <Success>
+                      <ConversationAction targettag="triggerer_player" text="恭喜你成为了新的守护者" />
+                    </Success>
+                    <Failure>
+                      <ConversationAction targettag="triggerer_player" text="不要浪费时间，把潜水服脱了再来" />
+                      <GoTo name="waitforinput" />
+                    </Failure>
+                  </CheckItemAction>
+                </Option>
+                <Option text="我再考虑一下">
+                  <ConversationAction targettag="triggerer_player" text="好吧,别让我等太久" />
+                  <NPCFollowAction npctag="Legende" targettag="triggerer_player" follow="false" />
+                </Option>
+              </ConversationAction>
+            </Option>
+          </ConversationAction>
+          <SetDataAction identifier="Legende2_complete" value="true" />
+        </Failure>
+      </CheckDataAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="Legende" commonness="70">
+      <CheckDataAction identifier="Legende_complete" condition="eq true">
+        <Success>
+          <!--Don't repeat event-->
+        </Success>
+        <Failure>
+          <TagAction criteria="player" tag="player" />
+          <SpawnAction npcsetidentifier="DHnpc" npcidentifier="Legende" targettag="Legende" spawnlocation="Outpost" targetmoduletags="airlock" />
+          <TriggerAction target1tag="Legende" target2tag="player" applytotarget2="triggerer_player" waitforinteraction="true" />
+          <NPCFollowAction npctag="Legende" targettag="triggerer_player" follow="true" />
+          <ConversationAction targettag="triggerer_player" text="EventText.Legende.c1" eventsprite="crowd">
+            <Option text="EventText.Legende.o1">
+              <ConversationAction targettag="triggerer_player" text="EventText.Legende.o1.c1">
+                <Option text="EventText.Legende.o1.o1">
+                  <ConversationAction targettag="triggerer_player" text="EventText.Legende.o1.o1.c1" />
+                  <StatusEffectAction targettag="Legende">
+                    <StatusEffect>
+                      <GiveTalentInfo giverandom="false" talentidentifiers="chonkyhonks,psychoclown,waterprankster,enrollintoclowncollege" />
+                    </StatusEffect>
+                  </StatusEffectAction>
+                  <NPCChangeTeamAction npctag="Legende" teamtag="1" addtocrew="true" />
+                  <NPCFollowAction npctag="Legende" targettag="triggerer_player" follow="false" />
+                </Option>
+                <Option text="EventText.Legende.o1.o2">
+                  <ConversationAction targettag="triggerer_player" text="EventText.Legende.o1.o2.c1" />
+                  <StatusEffectAction targettag="player">
+                    <StatusEffect>
+                      <GiveTalentInfo giverandom="false" talentidentifiers="chonkyhonks,psychoclown,waterprankster,enrollintoclowncollege" />
+                    </StatusEffect>
+                  </StatusEffectAction>
+                  <NPCFollowAction npctag="Legende" targettag="triggerer_player" follow="false" />
+                </Option>
+              </ConversationAction>
+            </Option>
+          </ConversationAction>
+          <SetDataAction identifier="Legende_complete" value="true" />
+        </Failure>
+      </CheckDataAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="DifficultHunting1" commonness="200">
+      <TagAction criteria="player" tag="player" />
+      <SpawnAction npcsetidentifier="DHnpc" npcidentifier="DHnpc_1" targettag="DHnpc_1" spawnlocation="Outpost" targetmoduletags="airlock" />
+      <Label name="waitforinput" />
+      <TriggerAction target1tag="DHnpc_1" target2tag="player" applytotarget2="triggerer_player" radius="200" waitforinteraction="true" />
+      <ConversationAction targettag="triggerer_player" text="一般人不敢接的任务，自然报酬诱人" eventsprite="Captain">
+        <Option text="狩猎怪物">
+          <ConversationAction targettag="triggerer_player" dialogtype="Small" text="狩猎怪物，简单粗暴，不是吗">
+            <Option text="接受1">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHunting" />
+              <MissionAction missiontag="DifficultHunting" />
+              <MissionAction missiontag="DifficultHunting" />
+              <MissionAction missiontag="DifficultHunting" />
+            </Option>
+            <Option text="接受2">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHunting2" />
+              <MissionAction missiontag="DifficultHunting2" />
+              <MissionAction missiontag="DifficultHunting2" />
+              <MissionAction missiontag="DifficultHunting2" />
+            </Option>
+            <Option text="接受3">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHunting3" />
+              <MissionAction missiontag="DifficultHunting3" />
+              <MissionAction missiontag="DifficultHunting3" />
+              <MissionAction missiontag="DifficultHunting3" />
+              <MissionAction missiontag="DifficultHunting3" />
+            </Option>
+            <Option text="拒绝">
+              <ConversationAction text="还是算了吧" dialogtype="Small" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="清剿洞窟">
+          <ConversationAction targettag="triggerer_player" dialogtype="Small" text="清剿洞窟难度很大，最好多带点人">
+            <Option text="接受">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHuntingNest" />
+              <MissionAction missiontag="DifficultHuntingNest" />
+              <MissionAction missiontag="DifficultHuntingNest" />
+              <MissionAction missiontag="DifficultHuntingNest" />
+            </Option>
+            <Option text="拒绝">
+              <ConversationAction text="还是算了吧" dialogtype="Small" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="猎杀深渊">
+          <ConversationAction targettag="triggerer_player" dialogtype="Small" text="猎杀深渊异兽，做得到吗？">
+            <Option text="接受1">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHuntingAbyss" />
+              <MissionAction missiontag="DifficultHuntingAbyss" />
+              <MissionAction missiontag="DifficultHuntingAbyss" />
+              <MissionAction missiontag="DifficultHuntingAbyss" />
+              <MissionAction missiontag="DifficultHuntingAbyss" />
+            </Option>
+            <Option text="接受2">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHuntingAbyss2" />
+              <MissionAction missiontag="DifficultHuntingAbyss2" />
+              <MissionAction missiontag="DifficultHuntingAbyss2" />
+              <MissionAction missiontag="DifficultHuntingAbyss2" />
+              <MissionAction missiontag="DifficultHuntingAbyss2" />
+            </Option>
+            <Option text="拒绝">
+              <ConversationAction text="还是算了吧" dialogtype="Small" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="深渊狂宴">
+          <ConversationAction targettag="triggerer_player" dialogtype="Small" text="居然想执行这种任务，这就是勇气吗">
+            <Option text="接受">
+              <ConversationAction text="正合我意" dialogtype="Small" targettag="triggerer_player" />
+              <MissionAction missiontag="DifficultHuntingAbyssEND" />
+              <MissionAction missiontag="DifficultHuntingAbyssEND" />
+              <MissionAction missiontag="DifficultHuntingAbyssEND" />
+              <MissionAction missiontag="DifficultHuntingAbyssEND" />
+            </Option>
+            <Option text="拒绝">
+              <ConversationAction text="还是算了吧" dialogtype="Small" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="无视全部">
+          <ConversationAction text="现在不是时候" dialogtype="Small" targettag="triggerer_player" />
+          <GoTo name="waitforinput" />
+        </Option>
+      </ConversationAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="DifficultHunting2" commonness="200">
+      <TagAction criteria="player" tag="player" />
+      <SpawnAction npcsetidentifier="DHnpc" npcidentifier="DHnpc_2" targettag="DHnpc_2" spawnlocation="Outpost" targetmoduletags="airlock" />
+      <Label name="waitforinput" />
+      <TriggerAction target1tag="DHnpc_2" target2tag="player" applytotarget2="triggerer_player" radius="200" waitforinteraction="true" />
+      <ConversationAction targettag="triggerer_player" text="带给我有趣的东西，我会给你报酬" eventsprite="Captain">
+        <Option text="想要兑换人物强化道具">
+          <ConversationAction text="强化自身也是很明智的选择" targettag="triggerer_player">
+            <Option text="给予锤头鲨的肋排（1000经验）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="hammerheadribs" amount="1">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="hammerheadribs" amount="1" />
+                  <ConversationAction targettag="triggerer_player" text="锤头鲨的肋排可是上好的食材" />
+                  <StatusEffectAction targettag="triggerer_player">
+                    <StatusEffect>
+                      <GiveExperience amount="3000" />
+                    </StatusEffect>
+                  </StatusEffectAction>
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予摩螺克的壳（内分泌促进剂）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="molochbone" amount="1">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="molochbone" amount="1" />
+                  <ConversationAction targettag="triggerer_player" text="虽然摩螺克数量很多，但是壳的产量却很低，这是为什么呢..." />
+                  <SpawnAction itemidentifier="endocrinebooster" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予蠕虫的壳（内分泌促进剂）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="endwormshell" amount="1">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="endwormshell" amount="1" />
+                  <ConversationAction targettag="triggerer_player" text="居然能拿到这种宝贝" />
+                  <SpawnAction itemidentifier="endocrinebooster" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予异星遗物（高级基因拼接器）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="skyholderartifact,thermalartifact,faradayartifact,nasonovartifact,psychosisartifact" amount="1">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="skyholderartifact,thermalartifact,faradayartifact,nasonovartifact,psychosisartifact" amount="1" />
+                  <ConversationAction targettag="triggerer_player" text="异星遗物的收藏价值也很高,当然,前提是妥善保管" />
+                  <SpawnAction itemidentifier="advancedgenesplicer" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予5个外星生物的蛋（5个未鉴定基因）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="smallmudraptoregg,mediummudraptoregg,largemudraptoregg,tigerthresheregg,crawleregg" amount="5">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="smallmudraptoregg,mediummudraptoregg,largemudraptoregg,tigerthresheregg,crawleregg" amount="5" />
+                  <ConversationAction targettag="triggerer_player" text="从蛋开始研究外星生物自然是最好的" />
+                  <SpawnAction itemidentifier="geneticmaterial_unresearched" amount="5" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="只是看看">
+              <ConversationAction text="找到了记得来找我" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="想要兑换特殊武器">
+          <ConversationAction text="武器装备也是生存的关键道具" targettag="triggerer_player">
+            <Option text="给予12个异星电路（“守卫”带盾手枪）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="aliencircuitry" amount="12">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="aliencircuitry" amount="12" />
+                  <ConversationAction targettag="triggerer_player" text="异星电路可是很有研究价值的" />
+                  <SpawnAction itemidentifier="GuardShieldedpistol" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予12个异星电路（“静谧”激光步枪）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="aliencircuitry" amount="12">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="aliencircuitry" amount="12" />
+                  <ConversationAction targettag="triggerer_player" text="异星电路可是很有研究价值的" />
+                  <SpawnAction itemidentifier="stillLaserRifle" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予24个异星饰品（“暴怒”加特林）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="alientrinket1,alientrinket2,alientrinket3" amount="24">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="alientrinket1,alientrinket2,alientrinket3" amount="24" />
+                  <ConversationAction targettag="triggerer_player" text="异星饰品的收藏价值相当不错" />
+                  <SpawnAction itemidentifier="rageGatling" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="给予24个异星饰品（“毁灭”单兵激光炮）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="alientrinket1,alientrinket2,alientrinket3" amount="24">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="alientrinket1,alientrinket2,alientrinket3" amount="24" />
+                  <ConversationAction targettag="triggerer_player" text="异星饰品的收藏价值相当不错" />
+                  <SpawnAction itemidentifier="destructionIndividualLaserCannon" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="只是看看">
+              <ConversationAction text="找到了记得来找我" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="想要兑换动力甲">
+          <ConversationAction text="动力甲可是男人的浪漫" targettag="triggerer_player">
+            <Option text="给予8个异星电池（堡垒级空间动力甲）">
+              <CheckItemAction targettag="triggerer_player" itemidentifiers="alienpowercell" amount="8">
+                <Success>
+                  <RemoveItemAction targettag="triggerer_player" itemidentifier="alienpowercell" amount="8" />
+                  <ConversationAction targettag="triggerer_player" text="这场交易,我们都会满意的" />
+                  <SpawnAction itemidentifier="spacepowerarmourEX" targetinventory="triggerer_player" />
+                </Success>
+                <Failure>
+                  <ConversationAction targettag="triggerer_player" text="不要浪费时间" />
+                  <GoTo name="waitforinput" />
+                </Failure>
+              </CheckItemAction>
+            </Option>
+            <Option text="只是看看">
+              <ConversationAction text="找到了记得来找我" targettag="triggerer_player" />
+              <GoTo name="waitforinput" />
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="只是看看">
+          <ConversationAction text="找到了记得来找我" targettag="triggerer_player" />
+          <GoTo name="waitforinput" />
+        </Option>
+      </ConversationAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="DHdefendMission1" commonness="100">
+      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="itemidentifier:opdeco_trashcan" tag="potentialtrashcan" submarinetype="outpost" />
+      <TriggerAction target1tag="potentialtrashcan" target2tag="player" applytotarget1="selectedtrashcan" applytotarget2="triggerer_player" radius="100" waitforinteraction="true" />
+      <ConversationAction targettag="triggerer_player" text="是否挑战防守模式" eventsprite="trashcan">
+        <Option text="开始挑战" endconversation="true">
+          <ConversationAction targettag="triggerer_player" text="第一波敌人5秒后来袭" endconversation="true">
+            <Option text="准备战斗" endconversation="true">
+              <WaitAction time="5" />
+              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+              <WaitAction time="30" />
+              <TriggerAction target1tag="potentialtrashcan" target2tag="player" applytotarget1="selectedtrashcan" applytotarget2="triggerer_player" radius="100" waitforinteraction="true" />
+              <ConversationAction targettag="triggerer_player" text="是否挑战下一波敌人" endconversation="true">
+                <Option text="开始挑战" endconversation="true">
+                  <ConversationAction targettag="triggerer_player" text="第二波敌人5秒后来袭" endconversation="true">
+                    <Option text="准备战斗" endconversation="true">
+                      <WaitAction time="5" />
+                      <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                      <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                      <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                      <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                      <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                      <WaitAction time="30" />
+                      <TriggerAction target1tag="potentialtrashcan" target2tag="player" applytotarget1="selectedtrashcan" applytotarget2="triggerer_player" radius="100" waitforinteraction="true" />
+                      <ConversationAction targettag="triggerer_player" text="是否挑战下一波敌人" endconversation="true">
+                        <Option text="开始挑战" endconversation="true">
+                          <ConversationAction targettag="triggerer_player" text="最后一波敌人5秒后来袭" endconversation="true">
+                            <Option text="准备战斗" endconversation="true">
+                              <WaitAction time="5" />
+                              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                              <SpawnAction speciesname="husk" spawnlocation="Outpost" spawnpointtype="Path" />
+                            </Option>
+                          </ConversationAction>
+                        </Option>
+                        <Option text="放弃挑战" endconversation="true" />
+                      </ConversationAction>
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="放弃挑战" endconversation="true" />
+              </ConversationAction>
+            </Option>
+          </ConversationAction>
+        </Option>
+        <Option text="放弃挑战" endconversation="true" />
+      </ConversationAction>
+    </ScriptedEvent>
+  </EventPrefabs>
+  <EventSet identifier="outposteventsDH" leveltype="outpost" locationtype="outpost,city,research,military,mine,colony,settlement,construction,camp,base,blockade,survey,excavation,study,lab,clinic,hospital,surgery,hydroponics,biosphere,nourishment,factory,shipyard,fusion" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true">
+    <!-- TODO: more sets here-->
+    <EventSet identifier="DifficultHuntingNPC10" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false" onceperoutpost="true" eventcount="1">
+      <ScriptedEvent identifier="Legende" probability="0.05" />
+    </EventSet>
+    <EventSet identifier="DifficultHuntingNPC1" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false" onceperoutpost="true" eventcount="1">
+      <ScriptedEvent identifier="DifficultHunting2" />
+    </EventSet>
+    <EventSet identifier="DifficultHuntingNPC2" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false" onceperoutpost="true" eventcount="1">
+      <ScriptedEvent identifier="DifficultHunting1" />
+    </EventSet>
+    <!-- low-difficulty random events -->
+    <EventSet identifier="outpostevents.easy.generic.randomevents" minleveldifficulty="0" maxleveldifficulty="30" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <OverrideEventCount locationtype="City" eventcount="4" />
+      <ScriptedEvent identifier="givingdirections" commonness="100" />
+      <ScriptedEvent identifier="goodsamaritan" commonness="100" />
+      <ScriptedEvent identifier="miketheidiot1" commonness="25" />
+      <ScriptedEvent identifier="Engineers_are_special" commonness="100" />
+      <ScriptedEvent identifier="fanclub" commonness="100" />
+      <ScriptedEvent identifier="shockjock" commonness="60" />
+      <ScriptedEvent identifier="manandhisraptor1" commonness="50" />
+      <ScriptedEvent identifier="assassinationofjacovsubra2" commonness="100" />
+      <ScriptedEvent identifier="assassinationofjacovsubra3" commonness="100" />
+      <ScriptedEvent identifier="propaganda" commonness="100" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="bombscare" commonness="50" faction="coalition" />
+      <ScriptedEvent identifier="terrorism101" commonness="50" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="separatistrelations" commonness="100" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="clownrelations1" commonness="100" faction="clowns" />
+      <ScriptedEvent identifier="huskcultist" commonness="100" faction="huskcult" />
+      <!-- events that only occur in low difficulty-->
+      <ScriptedEvent identifier="atwitsend" commonness="60" />
+      <ScriptedEvent identifier="censorship" commonness="60" faction="clowns" />
+      <ScriptedEvent identifier="infiltration" commonness="70" faction="clowns" />
+      <ScriptedEvent identifier="missionevent_clownoutbreak" commonness="70" faction="clowns" />
+    </EventSet>
+    <!-- high-difficulty random events -->
+    <EventSet identifier="outpostevent.difficult.generic.randomevents" minleveldifficulty="30" maxleveldifficulty="80" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <OverrideEventCount locationtype="City" eventcount="4" />
+      <!-- events that can occur in both low and high difficulty, commoness reduced here to favor the more difficult ones-->
+      <ScriptedEvent identifier="givingdirections" commonness="50" />
+      <ScriptedEvent identifier="goodsamaritan" commonness="50" />
+      <ScriptedEvent identifier="miketheidiot1" commonness="12" />
+      <ScriptedEvent identifier="Engineers_are_special" commonness="50" />
+      <ScriptedEvent identifier="fanclub" commonness="50" />
+      <ScriptedEvent identifier="shockjock" commonness="40" />
+      <ScriptedEvent identifier="manandhisraptor1" commonness="60" />
+      <ScriptedEvent identifier="assassinationofjacovsubra2" commonness="100" />
+      <ScriptedEvent identifier="assassinationofjacovsubra3" commonness="100" />
+      <ScriptedEvent identifier="nothingtoseehere" commonness="50" faction="coalition" />
+      <ScriptedEvent identifier="propaganda" commonness="50" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="bombscare" commonness="40" faction="coalition" />
+      <ScriptedEvent identifier="terrorism101" commonness="40" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="separatistrelations" commonness="50" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="clownrelations1" commonness="50" faction="clowns" />
+      <ScriptedEvent identifier="huskcultist" commonness="50" faction="huskcult" />
+      <!-- events that only occur in high difficulty-->
+      <ScriptedEvent identifier="blackmarket" commonness="100" />
+      <ScriptedEvent identifier="mediator" commonness="100" />
+      <ScriptedEvent identifier="firefighting" commonness="100" />
+      <ScriptedEvent identifier="sleightofhand" commonness="100" />
+      <ScriptedEvent identifier="miketheidiot2" commonness="25" />
+      <ScriptedEvent identifier="goblincooking1" commonness="50" />
+      <ScriptedEvent identifier="soundinthevent" commonness="100" />
+      <ScriptedEvent identifier="badvibrations1" commonness="80" />
+      <ScriptedEvent identifier="stuckinthemiddle" commonness="50" faction="coalition" />
+      <!-- technically a separatist event, but happens in a coalition outpost -->
+      <ScriptedEvent identifier="outbreak" commonness="100" faction="huskcult" />
+      <ScriptedEvent identifier="huskcultambush" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="huskcultrelations" commonness="100" faction="huskcult" />
+      <ScriptedEvent identifier="clownbrutality" commonness="100" faction="clowns" />
+      <ScriptedEvent identifier="clownrelations2" commonness="100" faction="clowns" />
+      <ScriptedEvent identifier="returner" commonness="50" />
+    </EventSet>
+    <!-- Events specific to military outposts -->
+    <EventSet identifier="outpostevent.military.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="military" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <!-- 50% chance of getting a military-specific event (TODO: increase if/when we have more of these available?) -->
+      <ScriptedEvent identifier="bigbrother" commonness="150" probability="0.8" faction="coalition" />
+      <ScriptedEvent identifier="explosivemishap" commonness="50" probability="0.8" />
+    </EventSet>
+    <!-- Events specific to research outposts -->
+    <EventSet identifier="outpostevent.research.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="research" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <!-- 50% chance of getting a research-specific event (TODO: increase if/when we have more of these available?) -->
+      <ScriptedEvent identifier="tastetest" commonness="150" probability="0.8" />
+      <ScriptedEvent identifier="crawleroutbreak" commonness="150" probability="0.8" />
+      <ScriptedEvent identifier="impromptuengineering" commonness="150" probability="0.8" />
+      <ScriptedEvent identifier="captivesouls" commonness="50" probability="0.8" />
+      <ScriptedEvent identifier="researcherescort" commonness="50" />
+    </EventSet>
+    <!-- Events specific to mining outposts -->
+    <EventSet identifier="outpostevent.mine.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="mine" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <!-- 50% chance of getting a mine-specific event (TODO: increase if/when we have more of these available?) -->
+      <ScriptedEvent identifier="consultant" commonness="150" probability="0.8" />
+      <ScriptedEvent identifier="occupationalhazards" commonness="150" probability="0.8" />
+    </EventSet>
+    <!-- Events specific to cities -->
+    <EventSet identifier="outpostevent.city.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="city" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <!-- 50% chance of getting a city-specific event (TODO: increase if/when we have more of these available?) -->
+      <ScriptedEvent identifier="captivesouls" commonness="50" probability="0.5" />
+      <ScriptedEvent identifier="explosivemishap" commonness="50" probability="0.5" />
+      <ScriptedEvent identifier="hognose" commonness="50" probability="0.5" />
+      <ScriptedEvent identifier="radiationescapee" commonness="50" />
+    </EventSet>
+    <EventSet identifier="outpostevents.coldcaverns.start.missionevents" minleveldifficulty="0" maxleveldifficulty="1" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="100" />
+      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="100" />
+      <ScriptedEvent identifier="missionevent_escort1coalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort1separatists" commonness="100" faction="separatists" />
+    </EventSet>
+    <EventSet identifier="outpostevents.coldcaverns.basic.generic.missionevents" minleveldifficulty="1" maxleveldifficulty="5" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="50" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set1" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="120" />
+      <ScriptedEvent identifier="missionevent_escort1coalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort1separatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="30" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="30" faction="clowns" />
+      <ScriptedEvent identifier="missionevent_collectminerals_mainpath" commonness="80" />
+    </EventSet>
+    <EventSet identifier="outpostevents.coldcaverns.advanced.generic.missionevents" minleveldifficulty="5" maxleveldifficulty="15" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="50" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set1" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="50" />
+      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="50" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="75" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="25" />
+      <ScriptedEvent identifier="missionevent_escort1coalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort1separatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+    </EventSet>
+    <EventSet identifier="outpostevents.europanridge.basic.generic.missionevents" minleveldifficulty="15" maxleveldifficulty="25" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="20" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="200" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="200" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set1" commonness="10" />
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="25" />
+      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="10" />
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="25" />
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="50" />
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
+      <ScriptedEvent identifier="missionevent_crawlernest" commonness="80" />
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="30" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="25" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="75" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="25" />
+      <ScriptedEvent identifier="missionevent_escort1coalition,missionevent_escort2coalition,missionevent_escort3coalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort1separatists,missionevent_escort2separatists,missionevent_escort3separatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_scanruin" commonness="50" />
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="30" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+    </EventSet>
+    <EventSet identifier="outpostevents.europanridge.advanced.generic.missionevents" minleveldifficulty="25" maxleveldifficulty="35" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="10" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="200" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="200" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set1" commonness="5" />
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="50" />
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="5" />
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="50" />
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="70" />
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
+      <ScriptedEvent identifier="missionevent_crawlernest" commonness="60" />
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="60" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="10" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="75" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="50" />
+      <ScriptedEvent identifier="missionevent_escort2coalition,missionevent_escort3coalition,missionevent_escort4coalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort2separatists,missionevent_escort3separatists,missionevent_escort4separatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_separatists" commonness="10" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_coalition" commonness="10" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_scanruin" commonness="90" />
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="60" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+    </EventSet>
+    <EventSet identifier="outpostevents.theaphoticplateau.basic.generic.missionevents" minleveldifficulty="35" maxleveldifficulty="50" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="10" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="120" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="120" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="25" />
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="50" />
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="25" />
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="50" />
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="140" />
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="120" />
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="5" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="25" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="50" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set4" commonness="25" />
+      <ScriptedEvent identifier="missionevent_escort2coalition,missionevent_escort3coalition,missionevent_escort4coalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort2separatists,missionevent_escort3separatists,missionevent_escort4separatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_separatists" commonness="20" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_coalition" commonness="20" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_scanruin" commonness="120" />
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="90" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+    </EventSet>
+    <EventSet identifier="outpostevent.difficult.generic.missionevents" minleveldifficulty="50" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <!-- same missions as in the previous tier, but with adjusted probabilities to favor more difficult ones -->
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="10" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="5" />
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="60" />
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="5" />
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="60" />
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="120" />
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="5" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="5" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set4" commonness="75" />
+      <ScriptedEvent identifier="missionevent_escort2coalition,missionevent_escort3coalition,missionevent_escort4coalition" commonness="160" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort2separatists,missionevent_escort3separatists,missionevent_escort4separatists" commonness="160" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_separatists" commonness="50" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_coalition" commonness="50" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_scanruin" commonness="100" />
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="120" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+    </EventSet>
+    <!--  Faction-specific events that can only occur once. 
+        In a separate set to make these very common (when they are valid for the situation) -->
+    <EventSet identifier="outpostevents.clowns" allowatstart="true" chooserandom="true" eventcount="3" faction="clowns">
+      <ScriptedEvent identifier="clownspecialhire1" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn1" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn2" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn3" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn4" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn5" commonness="100" />
+    </EventSet>
+    <EventSet identifier="outpostevents.separatists" allowatstart="true" chooserandom="true" eventcount="2" faction="separatists">
+      <ScriptedEvent identifier="separatistspecialhire1" commonness="100" />
+      <ScriptedEvent identifier="separatistspecialhire2" commonness="100" />
+      <ScriptedEvent identifier="missionevent_tormsdalereport" commonness="100" />
+      <ScriptedEvent identifier="missionevent_jailbreak_sootman" commonness="10" faction="separatists" />
+    </EventSet>
+    <EventSet identifier="outpostevents.separatists.triggeralways" allowatstart="true" eventcount="1" faction="separatists">
+      <ScriptedEvent identifier="tormsdalereport_complete" commonness="100" />
+    </EventSet>
+    <EventSet identifier="outpostevents.coalition" allowatstart="true" chooserandom="true" eventcount="1" faction="coalition">
+      <ScriptedEvent identifier="coalitionspecialhire1" commonness="50" />
+      <ScriptedEvent identifier="coalitionspecialhire2" commonness="50" />
+    </EventSet>
+    <EventSet identifier="outpostevents.huskcult" allowatstart="true" chooserandom="true" eventcount="4" faction="huskcult">
+      <ScriptedEvent identifier="huskcultspecialhire1" commonness="100" />
+      <ScriptedEvent identifier="youngcultists" commonness="100" />
+      <ScriptedEvent identifier="waytoascension1" commonness="100" />
+      <ScriptedEvent identifier="waytoascension2" commonness="100" />
+      <ScriptedEvent identifier="waytoascension3" commonness="100" />
+      <ScriptedEvent identifier="waytoascension4" commonness="100" />
+      <ScriptedEvent identifier="waytoascension5" commonness="100" />
+    </EventSet>
+  </EventSet>
+</Randomevents>
